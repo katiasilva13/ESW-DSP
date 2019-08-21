@@ -65,11 +65,10 @@ public class Aula20_08_19 {
     }
 
     //mostra no console o conteudo do arquivo .txt
-    
     public static void txtFileRead(String path) throws IOException {
 // public static void txtFileRead() throws IOException {
-   // try (InputStream is = new FileInputStream("src\\aula20_08_19\\testando.txt")) {
-        
+        // try (InputStream is = new FileInputStream("src\\aula20_08_19\\testando.txt")) {
+
         try (InputStream is = new FileInputStream(path)) {
             Scanner entrada = new Scanner(is);
             while (entrada.hasNextLine()) {
@@ -80,8 +79,8 @@ public class Aula20_08_19 {
     }
 //edita o conteudo do arquivo .txt
 
-    public static void textFileWrite() throws IOException {
-        OutputStream os = new FileOutputStream("src\\aula20_08_19\\saida.txt");
+    public static void textFileWrite(String path) throws IOException {
+        OutputStream os = new FileOutputStream(path);
         OutputStreamWriter osw = new OutputStreamWriter(os);
         BufferedWriter bw = new BufferedWriter(osw);
         bw.write("Java");
@@ -91,50 +90,32 @@ public class Aula20_08_19 {
     }
 
     //lê e edita o conteudo do arquivo .txt
-    public static void leGrava() throws IOException {
-        try (InputStream is = new FileInputStream("src\\aula20_08_19\\testando.txt")) {
-        //    Scanner entrada = new Scanner(is);
-        /*    while (entrada.hasNextLine()) {
-                System.out.println(entrada.nextLine());
-            }
-            
-  */        
-            txtFileRead("src\\aula20_08_19\\testando.txt");
-            
-            OutputStream os = new FileOutputStream("src\\aula20_08_19\\testando.txt");
+    public static void leGrava(String path) throws IOException {
+        try (InputStream is = new FileInputStream(path)) {
+
+            txtFileRead(path);
+            OutputStream os = new FileOutputStream(path);
             OutputStreamWriter osw = new OutputStreamWriter(os);
             BufferedWriter bw = new BufferedWriter(osw);
             bw.write("paçoca");
             bw.newLine();
             bw.close();
-            txtFileRead("src\\aula20_08_19\\testando.txt");
-            
+            txtFileRead(path);
+
         }
 
-        /*  
-         */
     }
-    /*   OutputStream os = new FileOutputStream("src\\aula20_08_19\\testando.txt");
-     OutputStreamWriter osw = new OutputStreamWriter(os);
-     BufferedWriter bw = new BufferedWriter(osw);
-     bw.write("21-08-19 01-02");
-     bw.newLine();
-     bw.close();
-     */
 
     public static void main(String[] args) throws IOException {
-        // TODO code application logic here
-
         //  csvAquivo();
         //  mp3File();
-        //txtFileRead();
-        //    textFileWrite();
-        leGrava();
+        //txtFileRead("src\\aula20_08_19\\testando.txt");
+        //textFileWrite("src\\aula20_08_19\\testando.txt");
+        leGrava("src\\aula20_08_19\\testando.txt");
     }
 
     private Path toPath() {
         throw new UnsupportedOperationException("Not supported yet.");
-//To change body of generated methods, choose Tools | Templates.
     }
 
 }
